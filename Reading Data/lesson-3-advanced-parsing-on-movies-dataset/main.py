@@ -19,4 +19,4 @@ movies = pd.read_csv('../files/movies.csv',
                      index_col='movie_title')
 
 
-print(movies['budget'].dtype)
+print(movies.head())

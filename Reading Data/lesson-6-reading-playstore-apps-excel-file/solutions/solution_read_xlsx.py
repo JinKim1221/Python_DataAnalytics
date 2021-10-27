@@ -8,3 +8,5 @@ playstore_df = pd.read_excel(data_url,
                    usecols=['App', 'Rating', 'Installs', 'Rating', 'Genres', 'Last_Updated'])
 
 playstore_df = playstore_df.sort_values('Rating', ascending=False).head(25)
+
+print(playstore_df)

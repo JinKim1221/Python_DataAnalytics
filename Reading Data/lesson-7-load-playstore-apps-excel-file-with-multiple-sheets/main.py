@@ -14,9 +14,10 @@ content_id_df = pd.read_excel( data_url,
                                sheet_name='Content_ID',
                                index_col='Content_ID')
 
-content_id_head = pd.DataFrame({'Content_Rating': ['Everyone', 'Everyone', 'Everyone', 'Teen', 'Everyone']},
-                                index=[101, 101, 101, 102, 101])
-                            
-assert content_id_df.head().equals(content_id_head)
-print(content_id_df.head().equals(content_id_head))
+# Same result; but different function of reading excel file
+# file = pd.ExcelFile(data_url)
+# playstore_df = file.parse(index_col=0)
+# content_id_df = file.parse('Content_ID', 
+#                           index_col='Content_ID')
 
+    

@@ -12,9 +12,9 @@ import requests
 
 req = requests.get('https://swapi.dev/api/people')
 json_dict = req.json()
-# print(req.json())
+
 starwars_people_df = pd.DataFrame.from_dict(json_dict['results'])
-# print(starwars_people_df)
+print(starwars_people_df.columns)
 
 blue_eyed_people_df = starwars_people_df.loc[starwars_people_df['eye_color'] == 'blue']
 print(blue_eyed_people_df)

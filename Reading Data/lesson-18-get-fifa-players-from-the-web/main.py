@@ -11,7 +11,7 @@ import requests
 
 fifa_df = pd.read_html('files/fifa_players.html', encoding='utf-8')
 
-fifa_df = fifa_df[0].iloc[:, 2:-1]
+fifa_df = fifa_df[0].iloc[:, 2:-1].head(30) # iloc[columns, rows]
 most_hits_player = fifa_df.sort_values('Hits', ascending=False).head(1)
 
 print(fifa_df)

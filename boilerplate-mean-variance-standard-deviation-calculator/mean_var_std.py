@@ -1,0 +1,33 @@
+import numpy as np
+from numpy.core.fromnumeric import std
+
+def calculate(list):
+  if len(list) != 9:
+    return ValueError('List must contain 9 elements')
+  else : 
+    matrix = np.array(list).reshape(3,3)
+
+  mean = [(matrix.mean(axis=0).tolist()), (matrix.mean(axis=1).tolist()),
+          (matrix.flatten().mean())]
+  variance = [(matrix.var(axis=0).tolist()), (matrix.var(axis=1).tolist()),
+          (matrix.flatten().var())]
+  std_deviation = [(matrix.std(axis=0).tolist()), (matrix.std(axis=1).tolist()),
+          (matrix.flatten().std())]
+  max = [(matrix.max(axis=0).tolist()), (matrix.max(axis=1).tolist()),
+          (matrix.flatten().max())]
+  min = [(matrix.min(axis=0).tolist()), (matrix.min(axis=1).tolist()),
+          (matrix.flatten().min())]
+  sum = [(matrix.sum(axis=0).tolist()), (matrix.sum(axis=1).tolist()),
+          (matrix.flatten().sum())]
+  calculations = {
+    'mean' : mean,
+    'variance' : variance,
+    'std_deviation' : std_deviation,
+    'max' : max,
+    'min' : min,
+    'sum' : sum
+  }
+
+  
+
+  return calculations

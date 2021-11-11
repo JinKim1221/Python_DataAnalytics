@@ -16,14 +16,6 @@ df['gluc'] = df['gluc'].apply(lambda x: 0 if x == 1 else 1)
 
 # Draw Categorical Plot
 def draw_cat_plot():
-    # # Create DataFrame for cat plot using `pd.melt` using just the values from 'cholesterol', 'gluc', 'smoke', 'alco', 'active', and 'overweight'.
-    # df_cat = pd.melt(df, value_vars = ['cholesterol','gluc','smoke','alco','active','overweight'])
-    # print(df_cat)
-
-    # # Group and reformat the data to split it by 'cardio'. Show the counts of each feature. You will have to rename one of the columns for the catplot to work correctly.
-    # df_cat = df_cat.melt(id_vars='cardio', )
-
-    # # Draw the catplot with 'sns.catplot()'
 
     # Create DataFrame for cat plot using `pd.melt` using just the values from 'cholesterol', 'gluc', 'smoke', 'alco', 'active', and 'overweight'.
     # df_cat = pd.melt(df, value_vars = ['alco', 'active','cholesterol', 'gluc', 'overweight','smoke'])
@@ -38,29 +30,33 @@ def draw_cat_plot():
 
 
     # Do not modify the next two lines
-    fig.savefig('catplot1.png')
+    fig.savefig('catplot.png')
     return fig
 
 
 # Draw Heat Map
 def draw_heat_map():
     # Clean the data
-    df_heat = None
-
+    df_heat = df[(df['ap_lo'] <= df['ap_hi']) &
+                 (df['height'] >= df['height'].quantile(0.025)) &
+                 (df['height'] <= df['height'].quantile(0.975)) &
+                 (df['height'] >= df['height'].quantile(0.025)) &
+                 (df['height'] <= df['height'].quantile(0.9725))
+                ]
     # Calculate the correlation matrix
-    corr = None
+    corr = df_heat.corr()
 
     # Generate a mask for the upper triangle
-    mask = None
-
+    mask = np.triu(corr)
 
 
     # Set up the matplotlib figure
-    fig, ax = None
+    fig, ax = plt.subplots(figsize=(7, 5))
+    
 
     # Draw the heatmap with 'sns.heatmap()'
-
-
+    sns.heatmap(corr,mask=mask, fmt='.1f',vmax=.3, linewidths=.5,square=True, cbar_kws = {'shrink':0.5},annot=True, center=0)
+  
 
     # Do not modify the next two lines
     fig.savefig('heatmap.png')

@@ -12,22 +12,24 @@ df = df[
         (df['value'] >= (df['value'].quantile(0.025))) & 
         (df['value'] <= (df['value'].quantile(0.975)))   
        ]
-# print(df)
+print(df)
 
 def draw_line_plot():
     # Draw line plot
+    fig = plt.figure(figsize=(15,10))
+    plt.plot(df.index, df['value'],color='red')
+    plt.title('Daily freeCodeCamp Forum Page Views 5/2016-12/2019')
+    plt.xlabel('Date')
+    plt.ylabel('Page Views')
 
-
-
-
-    
-    # Save image and return fig (don't change this part)
+    Save image and return fig (don't change this part)
     fig.savefig('line_plot.png')
     return fig
 
+
 def draw_bar_plot():
     # Copy and modify data for monthly bar plot
-    df_bar = None
+    df_bar = df.copy()
 
     # Draw bar plot
 
